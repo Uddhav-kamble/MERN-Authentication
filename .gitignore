@@ -3,6 +3,9 @@ node_modules/
 client/node_modules/
 server/node_modules/
 
+# Vercel
+.vercel
+
 # Environment variables
 .env
 client/.env
@@ -52,3 +55,4 @@ Thumbs.db
 
 # Misc
 .cache
+.vercel
