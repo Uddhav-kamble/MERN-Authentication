@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 function Navbar() {
 
     const navigate = useNavigate();
-    const {userData, backendUrl, setUserData, setIsLoggedin} = useContext(AppContext);
+    const {userData, backendUrl, setUserData, setIsLoggedin, removeToken} = useContext(AppContext);
 
     const sendVerificationOtp = async ()=> {
       try {
@@ -33,9 +33,13 @@ function Navbar() {
       try {
         axios.defaults.withCredentials = true
         const {data} = await axios.post(backendUrl + '/api/auth/logout')
-        data.success && setIsLoggedin(false)
-        data.success && setUserData(false)
-        navigate('/')
+        
+        if(data.success) {
+          removeToken();
+          setIsLoggedin(false)
+          setUserData(false)
+          navigate('/')
+        }
 
       } catch (error) {
         toast.error(error.message);

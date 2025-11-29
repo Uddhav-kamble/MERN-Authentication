@@ -10,7 +10,7 @@ function Login() {
 
     const navigate = useNavigate();
 
-    const {backendUrl, setIsLoggedin, getUserData} = useContext(AppContext)
+    const {backendUrl, setIsLoggedin, getUserData, setToken} = useContext(AppContext)
 
     const [state, setState] = useState('Sign Up');
 
@@ -28,6 +28,7 @@ function Login() {
                 const {data} = await axios.post(backendUrl + '/api/auth/register', {name, email, password})
 
                 if(data.success) {
+                    setToken(data.token);
                     setIsLoggedin(true);
                     getUserData()
                     navigate('/')
@@ -40,6 +41,7 @@ function Login() {
                 const {data} = await axios.post(backendUrl + '/api/auth/login', {email, password})
 
                 if(data.success) {
+                    setToken(data.token);
                     setIsLoggedin(true)
                     getUserData()
                     navigate('/')
