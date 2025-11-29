@@ -8,7 +8,7 @@ export const AppContextProvider = (props) => {
 
     axios.defaults.withCredentials = true;
 
-    const backendUrl = 'http://localhost:4000'
+    const backendUrl = 'https://mern-authentication-backend-sage.vercel.app'
     const [isLoggedin, setIsLoggedin] = useState(false);
     const [userData, setUserData] = useState(false);
 
